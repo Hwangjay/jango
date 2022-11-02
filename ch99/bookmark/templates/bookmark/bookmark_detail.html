@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}bookmark_detail.html{% endblock %}
+
+{% block content %}
+<h1>{{object.title}}</h1>
+<ul>-->
+    <li><a href="{{object.url}}">{{object.url}}</a></li>
+    </ul>
+{% endblock %}
+{% block footer %}
+<footer class="fixed-bottom bg-info">
+    <h4>This is FOOTER area.</h4>
+    copyright &copy; 2022 DjangoBook by gydori
+</footer>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Django Bookmark Detail</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--    <div>-->
+<!--        <h1>{{object.title}}</h1>-->
+<!--&lt;!&ndash;        <h1>Naver</h1>&ndash;&gt;-->
+<!--        <ul>-->
+<!--            <li><a href="{{object.url}}">{{object.url}}</a></li>-->
+<!--&lt;!&ndash;            <li><a href="http://www.naver.com">http://www.naver.com</a></li>&ndash;&gt;-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--</body>-->
+<!--</html>-->

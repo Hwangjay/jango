@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Blog List</h1>
+<br>
+
+<!--{{ 변수 }} 템블릿 태그-->
+
+<!--# Post 테이블의 내용(글)을 나열-->
+
+<!--{% for 변수 in 리스트%}-->
+<!--{% endfor %}-->
+
+{% for post in posts %}
+     <h3><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h3>
+     {{ post.modify_dt }}
+     <p>{{ post.description }}</p>
+{% endfor %}
+
+<!--# 페이지 이동 링크(다음페이지, 이전페이지)-->
+
+<!--1페이지에서 본 화면 내용-->
+<!--Page 1 of 3 NextPage-->
+
+<!--2페이지에서 본 화면 내용-->
+<!--PreviousPage Page 2 of 3 NextPage-->
+
+<!--3페이지에서 본 화면 내용-->
+<!--PreviousPage Page 3 of 3-->
+
+<!--{% if 조건 %}-->
+<!--{% endif %}-->
+
+<!--page_obj 는 장고 Page 객체가 들어있는 컨택스트 변수-->
+<!--현재 페이지 기준으로 이전페이지가 있는지 확인-->
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+{% endif %}
+
+<!--현재 페이지 번호-->
+<!--Page 현재페이지 of 전체페이지-->
+Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+<!--현재 페이지 기준으로 다음 페이지가 있늕 확인-->
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number}}">NextPage</a>
+{% endif %}
+</body>
+</html>
+
+
+<!--ListView에서 Pagination 사용 가능-->
+<!--Pagination 사용하려면 Paginate_by 변수 추가-->
+<!--** Page 클래스-->
+<!--page_obj 이름으로 포함-->
+
+<!-- -포함 메서드-->
+<!--Page.has_next()              :다음페이지가 있으면 True 반환-->
+<!--Page.has_previous()           :이전페이지가 있으면 True 반환-->
+<!--Page.next_page_number()        :다음페이지가 있으면 페이지 번호 반환-->
+<!--Page.previous_page_number()     :이전페이지가 있으면 페이지 번호 반환-->
+
+<!-- -포함 맴버변수-->
+<!--page_number-->
+<!--page_paginate-->

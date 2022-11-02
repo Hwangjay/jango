@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}post_all.html{% endblock %}
+
+{% block content %}
+<h1>Blog List</h1>
+<br>
+
+<!--{{ 변수 }} 템블릿 태그-->
+
+<!--# Post 테이블의 내용(글)을 나열-->
+
+<!--{% for 변수 in 리스트%}-->
+<!--{% endfor %}-->
+
+{% for post in posts %}
+     <h3><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h3>
+     {{ post.modify_dt }}
+     <p>{{ post.description }}</p>
+{% endfor %}
+
+
+{% if page_obj.has_previous %}
+    <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>
+{% endif %}
+
+Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+{% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number}}">NextPage</a>
+{% endif %}
+
+{% endblock %}
+{% block footer %}
+<footer class="fixed-bottom bg-info">
+    <h4>This is FOOTER area.</h4>
+    copyright &copy; 2022 DjangoBook by gydori
+</footer>
+{% endblock %}
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h1>Blog List</h1>-->
+<!--<br>-->
+
+<!--&lt;!&ndash;{{ 변수 }} 템블릿 태그&ndash;&gt;-->
+
+<!--&lt;!&ndash;# Post 테이블의 내용(글)을 나열&ndash;&gt;-->
+
+<!--&lt;!&ndash;{% for 변수 in 리스트%}&ndash;&gt;-->
+<!--&lt;!&ndash;{% endfor %}&ndash;&gt;-->
+
+<!--{% for post in posts %}-->
+<!--     <h3><a href='{{ post.get_absolute_url }}'>{{ post.title }}</a></h3>-->
+<!--     {{ post.modify_dt }}-->
+<!--     <p>{{ post.description }}</p>-->
+<!--{% endfor %}-->
+
+<!--&lt;!&ndash;# 페이지 이동 링크(다음페이지, 이전페이지)&ndash;&gt;-->
+
+<!--&lt;!&ndash;1페이지에서 본 화면 내용&ndash;&gt;-->
+<!--&lt;!&ndash;Page 1 of 3 NextPage&ndash;&gt;-->
+
+<!--&lt;!&ndash;2페이지에서 본 화면 내용&ndash;&gt;-->
+<!--&lt;!&ndash;PreviousPage Page 2 of 3 NextPage&ndash;&gt;-->
+
+<!--&lt;!&ndash;3페이지에서 본 화면 내용&ndash;&gt;-->
+<!--&lt;!&ndash;PreviousPage Page 3 of 3&ndash;&gt;-->
+
+<!--&lt;!&ndash;{% if 조건 %}&ndash;&gt;-->
+<!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
+
+<!--&lt;!&ndash;page_obj 는 장고 Page 객체가 들어있는 컨택스트 변수&ndash;&gt;-->
+<!--&lt;!&ndash;현재 페이지 기준으로 이전페이지가 있는지 확인&ndash;&gt;-->
+<!--{% if page_obj.has_previous %}-->
+<!--    <a href="?page={{ page_obj.previous_page_number }}">PreviousPage</a>-->
+<!--{% endif %}-->
+
+<!--&lt;!&ndash;현재 페이지 번호&ndash;&gt;-->
+<!--&lt;!&ndash;Page 현재페이지 of 전체페이지&ndash;&gt;-->
+<!--Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}-->
+<!--&lt;!&ndash;현재 페이지 기준으로 다음 페이지가 있늕 확인&ndash;&gt;-->
+<!--{% if page_obj.has_next %}-->
+<!--    <a href="?page={{ page_obj.next_page_number}}">NextPage</a>-->
+<!--{% endif %}-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--&lt;!&ndash;ListView에서 Pagination 사용 가능&ndash;&gt;-->
+<!--&lt;!&ndash;Pagination 사용하려면 Paginate_by 변수 추가&ndash;&gt;-->
+<!--&lt;!&ndash;** Page 클래스&ndash;&gt;-->
+<!--&lt;!&ndash;page_obj 이름으로 포함&ndash;&gt;-->
+
+<!--&lt;!&ndash; -포함 메서드&ndash;&gt;-->
+<!--&lt;!&ndash;Page.has_next()              :다음페이지가 있으면 True 반환&ndash;&gt;-->
+<!--&lt;!&ndash;Page.has_previous()           :이전페이지가 있으면 True 반환&ndash;&gt;-->
+<!--&lt;!&ndash;Page.next_page_number()        :다음페이지가 있으면 페이지 번호 반환&ndash;&gt;-->
+<!--&lt;!&ndash;Page.previous_page_number()     :이전페이지가 있으면 페이지 번호 반환&ndash;&gt;-->
+
+<!--&lt;!&ndash; -포함 맴버변수&ndash;&gt;-->
+<!--&lt;!&ndash;page_number&ndash;&gt;-->
+<!--&lt;!&ndash;page_paginate&ndash;&gt;-->

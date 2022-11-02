@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>{{ object.title }}</h2>
+
+<p>
+    {% if object.get_previous %}
+        <a href="{{ object.get_previous.get_absolute_url }}" title="View previous post">
+            &laquo;-- {{ object.get_previous }}
+        </a>
+    {% endif %}
+
+    {% if object.get_next %}
+    |   <a href="{{ object.get_next.get_absolute_url }}" title="View next post">
+        {{ object.get_next }} --&raquo;
+    </a>
+    {% endif %}
+</p>
+
+<p>{{ object.modify_dt|date:"j F Y" }}</p>
+<br>
+<!--포스트 객체의 내용을 출력-->
+<!--linebreaks 템플릿 필터는 \n(new line)을 인식-->
+    {{ object.content|linebreaks }}
+
+</body>
+</html>
